@@ -31,6 +31,11 @@ Incident grouping and prioritization
 Administrator dashboard
 ```
 
+## How SentinelAI Works
+
+![How SentinelAI Works](sentinelai-working-flow.jpeg)
+
+
 ## Main Features
 
 - Simulated employee banking portal.
