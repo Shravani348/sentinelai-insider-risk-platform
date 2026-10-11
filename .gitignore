@@ -1,0 +1,17 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.env.example
+
+# Node
+node_modules/
+dist/
+
+# OS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
