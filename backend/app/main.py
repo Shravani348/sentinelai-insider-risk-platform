@@ -3,7 +3,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.api.v1 import auth
+from app.api.v1 import auth, employees, activity # Added activity import
 import traceback
 
 app = FastAPI(
@@ -12,7 +12,6 @@ app = FastAPI(
     description="SentinelAI Backend API for Insider Threat Detection"
 )
 
-# ULTIMATE DIAGNOSTIC: Catch all internal crashes (including dependencies)
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     return JSONResponse(
@@ -32,8 +31,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Register our new authentication endpoint
+# Register our endpoints
 app.include_router(auth.router, prefix=f"{settings.API_V1_STR}/auth", tags=["auth"])
+app.include_router(employees.router, prefix=f"{settings.API_V1_STR}/employees", tags=["employees"])
+app.include_router(activity.router, prefix=f"{settings.API_V1_STR}/activity", tags=["activity"]) # Added activity router
 
 @app.get("/")
 def root():
