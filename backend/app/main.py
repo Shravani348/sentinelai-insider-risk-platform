@@ -3,7 +3,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.api.v1 import auth, employees, activity # Added activity import
+from app.api.v1 import auth, employees, activity, alerts
 import traceback
 
 app = FastAPI(
@@ -39,3 +39,5 @@ app.include_router(activity.router, prefix=f"{settings.API_V1_STR}/activity", ta
 @app.get("/")
 def root():
     return {"status": "online", "message": "SentinelAI API is running securely."}
+
+app.include_router(alerts.router, prefix=f"{settings.API_V1_STR}/alerts", tags=["alerts"])
